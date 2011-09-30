@@ -82,11 +82,13 @@ def createMessages(tweets):
             '%d',
         )
         for tweet in tweets:
-            line = u'%02d:%02d %s\n' % (
-                tweet.created_at.hour,
-                tweet.created_at.minute,
-                tweet.text,
-            )
+            line = (
+                u'%02d:%02d %s\n' % (
+                    tweet.created_at.hour,
+                    tweet.created_at.minute,
+                    tweet.text,
+                )
+            ).replace('%', '%%')
             if len(message) + len(line) > message_size:
                 messages.append(message)
                 i += 1
